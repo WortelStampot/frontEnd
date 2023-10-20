@@ -1,0 +1,17 @@
+DROP_TABLE_IF_EXISTS_user;
+DROP_TALBE_IF_EXISTS_post;
+
+CREATE_TABLE_user_(
+    __id_INTEGER_PRIMARY_KEY_AUTOINCREMENT,
+    __username_TEXT_UNIQUE_NOT_NULL,
+    __password_TEXT_NOT_NULL
+);
+
+CREATE_TABLE_post_(
+    __id_INTEGER_PRIMARY_KEY_AUTOINCREMENT,
+    __author_id_INTEGER_NOT_NULL,
+    __created_TIMESTAMP_NOT_NULL_DEFAULT_CURRENT_TIMESTAMP,
+    __title_TEXT_NOT_NULL,
+    __body_TEXT_NOT_NULL,
+    __FOREIGN_KEY_(author_id)_REFERENCES_user_(id)
+);
