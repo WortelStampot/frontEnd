@@ -9,13 +9,13 @@ def create_app(test_config=None):
 		)
 	
 	if test_config is None:
-		app.config.from_pyfile('config.py', silent=False)
+		app.config.from_pyfile('config.py', silent=True)
 	else:
 		app.config.from_mapping(test_config)
 
 	#ensure the instance referenced above folder exists
 	try:
-		os.mkdirs(app.instance_path)
+		os.mkdir(app.instance_path)
 	except OSError:
 		pass # do nothing?
 
