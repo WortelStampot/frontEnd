@@ -26,6 +26,9 @@ def create_app(test_config=None):
 
 	from . import db #from 'one step out, relative to this module', import db.py
 	db.init_app(app)	
+
+	from . import auth
+	app.register_blueprint(auth.bp)
 	
 	return app
 
