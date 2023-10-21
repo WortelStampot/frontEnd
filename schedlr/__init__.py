@@ -6,6 +6,7 @@ def create_app(test_config=None):
 	app = Flask(__name__, instance_relative_config=True)
 	app.config.from_mapping(
 		SECRET_KEY='dev',
+		DATABASE=os.path.join(app.instance_path, 'schedlr.sqlite'),
 		)
 	
 	if test_config is None:
@@ -22,6 +23,9 @@ def create_app(test_config=None):
 	@app.route('/start')
 	def a():
 		return 'frontEnd'
+
+	from . import db #from 'one step out, relative to this module', import db.py
+	db.init_app(app)	
 	
 	return app
 
