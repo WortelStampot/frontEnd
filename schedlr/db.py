@@ -18,3 +18,18 @@ def close_db(e=None):
 
     if db is not None:
         db.close()
+
+def init_db():
+    db = get_db()
+
+    with current_app.open_resource('schema.sql') as f:
+        db.executescript(f.read().decode('utf8'))
+
+@click.command('init-db')
+def init_db_command():
+    init_db()
+    click.echo('initialized database')
+
+def init_app(app):
+    app.teardown_appcontext(close_db) # call close_db during 'teardown'
+    app.cli.add_command(init_db_command) # add the click command to be called with 'flask' command
