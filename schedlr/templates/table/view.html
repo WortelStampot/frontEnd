@@ -7,18 +7,18 @@
 {% block content %}
     <table>
         <tr>
-            <td>Staff</td>
-            <td>Monday</td>
-            <td>Tuesday</td>
-            <td>Wednesday</td>
-            <td>Thursday</td>
-            <td>Friday</td>
-            <td>Saturday</td>
-            <td>Sunday</td>
+            <th>&nbsp;</th>
+            <th>Monday</th>
+            <th>Tuesday</th>
+            <th>Wednesday</th>
+            <th>Thursday</th>
+            <th>Friday</th>
+            <th>Saturday</th>
+            <th>Sunday</th>
         </tr>
     {% for shift in shifts %}
             <tr>
-                <td>{{ shift['staff'] }}</td>
+                <th>{{ shift['staff'] }}</th>
                 <td>{{ shift['role'] }}</td>
             </tr>
     {% endfor %}
