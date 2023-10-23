@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}Schedule View{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <table>
+        <tr>
+            <td>Staff</td>
+            <td>Monday</td>
+            <td>Tuesday</td>
+            <td>Wednesday</td>
+            <td>Thursday</td>
+            <td>Friday</td>
+            <td>Saturday</td>
+            <td>Sunday</td>
+        </tr>
+    {% for shift in shifts %}
+            <tr>
+                <td>{{ shift['staff'] }}</td>
+                <td>{{ shift['role'] }}</td>
+            </tr>
+    {% endfor %}
+    </table>
+{% endblock %}
