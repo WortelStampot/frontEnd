@@ -16,11 +16,11 @@
             <th>Saturday</th>
             <th>Sunday</th>
         </tr>
-    {% for shift in shifts %}
-            <tr>
-                <th>{{ shift['staff'] }}</th>
-                <td>{{ shift['role'] }}</td>
-            </tr>
+    {% for staff in staff %}
+        <tr>
+        <th>{{ staff }}</th>
+        </tr>
     {% endfor %}
+            
     </table>
 {% endblock %}
