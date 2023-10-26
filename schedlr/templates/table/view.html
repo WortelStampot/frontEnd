@@ -6,7 +6,7 @@
 
 {% block content %}
     <table>
-        <tr>
+        <thead>
             <th>&nbsp;</th>
             <th>Monday</th>
             <th>Tuesday</th>
@@ -15,10 +15,12 @@
             <th>Friday</th>
             <th>Saturday</th>
             <th>Sunday</th>
-        </tr>
-    {% for staff in staff %}
+        </thead>
+    {% for staffData in data %}
         <tr>
-        <th>{{ staff }}</th>
+            {% for value in staffData %}
+                <td>{{ value }}</td>
+            {% endfor %}
         </tr>
     {% endfor %}
             
