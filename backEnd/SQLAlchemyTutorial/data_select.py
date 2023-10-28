@@ -123,4 +123,67 @@ their phrase, spongebob
 '''
 
 # -- the WHERE clause --
+user_table.c.name == 'squidward'
+" user_account.name = :name_1 "
 
+address_table.c.user_id > 10
+" address.user_id > :user_id_1 "
+
+# we can use expressions containing the ==, >, <, !=... etc operators
+# to create WHERE clauses, when passing these expressions to Select.where() method
+
+select(user_table).where(user_table.c.name == 'squidward')
+'''
+SELECT user_account.id, user_account.name, user_account.fullname 
+FROM user_account 
+WHERE user_account.name = :name_1
+'''
+
+# to produce multiple expressions joined by AND,
+# select.where() can be invoked multiple times
+
+select(address_table.c.email_address)\
+   .where(user_table.c.name == 'squidward')\
+   .where(address_table.c.user_id == user_table.c.id)
+'''
+SELECT address.email_address 
+FROM address, user_account 
+WHERE user_account.name = :name_1 AND address.user_id = user_account.id
+'''
+
+# Select.where() also accepts multiple arguments
+select(address_table.c.email_address).where(
+   user_table.c.name == 'squidward',
+   address_table.c.user_id == user_table.c.id,
+)
+'''
+SELECT address.email_address 
+FROM address, user_account 
+WHERE user_account.name = :name_1 AND address.user_id = user_account.id
+'''
+
+# 'AND' and 'OR' conjunctions are available direct with and_() and or_() functions
+from sqlalchemy import and_, or_
+
+select(Address.email_address).where(
+   and_(
+      or_(User.name == 'squidward', User.name == 'sandy'),
+      Address.user_id == User.id,
+   )
+)
+'''
+SELECT address.email_address 
+FROM address, user_account 
+WHERE (user_account.name = :name_1 OR user_account.name = :name_2)
+AND address.user_id = user_account.id
+'''
+
+# -- Select.filter_by()
+select(User).filter_by(name='spongebob', fullname='Spongebob Squarepants')
+'''
+SELECT user_account.id, user_account.name, user_account.fullname 
+FROM user_account 
+WHERE user_account.name = :name_1 AND user_account.fullname = :fullname_1
+'''
+
+# -- Explicit FROM clauses and JOINs --
