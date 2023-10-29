@@ -21,14 +21,10 @@ def create_app(test_config=None):
 	except OSError:
 		pass # do nothing?
 
-	@app.route('/start')
-	def a():
-		return 'frontEnd'
-
 	# -- sqlalchemy setup --
 	from flask_sqlalchemy import SQLAlchemy
 	from sqlalchemy.orm import DeclarativeBase
-	
+
 	class Base(DeclarativeBase):
 		pass
 
