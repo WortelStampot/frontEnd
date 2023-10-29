@@ -18,8 +18,8 @@ def create_app(test_config=None):
 	#ensure the instance referenced above folder exists
 	try:
 		os.mkdir(app.instance_path)
-	except OSError:
-		pass # do nothing?
+	except OSError: # when the folder already exists, there would be an error-
+		pass # so we 'do nothing' as a success
 
 	# -- sqlalchemy setup --
 	from flask_sqlalchemy import SQLAlchemy
