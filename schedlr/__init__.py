@@ -28,7 +28,10 @@ def create_app(test_config=None):
 	class Base(DeclarativeBase):
 		pass
 
-	db = SQLAlchemy(model_class=Base)
+	sqlDB = SQLAlchemy(model_class=Base)
+	sqlDB.init_app(app)
+
+	from . import db
 	db.init_app(app)
 
 	from . import auth
