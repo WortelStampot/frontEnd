@@ -28,11 +28,11 @@ def create_app(test_config=None):
 	from .alchemy import alchemyDB # initialze sqlalchemy db
 	alchemyDB.init_app(app)
 
-	import alchemy.models # may be redundent? may be a blunder?
-	'when you define models in other modules, import them before calling'
 	with app.app_context():
+		from .alchemy.models import User # may be redundent? may be a blunder?
+		'when you define models in other modules, import them before calling'
 		alchemyDB.create_all()
-
+		
 	from . import auth
 	app.register_blueprint(auth.bp)
 
