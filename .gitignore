@@ -1,4 +1,5 @@
 .venv/
+.DirectionTrail/
 
 *.pyc
 __pycache__/
