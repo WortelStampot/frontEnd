@@ -21,18 +21,12 @@ def create_app(test_config=None):
 	except OSError: # when the folder already exists, there would be an error-
 		pass # so we 'do nothing' as a success
 
-	# -- sqlalchemy setup --
-	from flask_sqlalchemy import SQLAlchemy
-	from sqlalchemy.orm import DeclarativeBase
 
-	class Base(DeclarativeBase):
-		pass
-
-	sqlDB = SQLAlchemy(model_class=Base)
-	sqlDB.init_app(app)
-
-	from . import db
+	from . import db # initialize tutorial db
 	db.init_app(app)
+
+	from .alchemy import alchemyDB # initialze sqlalchemy db
+	alchemyDB.init_app(app)
 
 	from . import auth
 	app.register_blueprint(auth.bp)
