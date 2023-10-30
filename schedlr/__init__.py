@@ -8,6 +8,7 @@ def create_app(test_config=None):
 		SECRET_KEY='dev',
 		DATABASE=os.path.join(app.instance_path, 'schedlr.sqlite'),
 		SQLALCHEMY_DATABASE_URI = 'sqlite:///sqlalchemy.db',
+		SQLALCHEMY_ECHO = True
 		)
 
 	if test_config is None:
