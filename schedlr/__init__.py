@@ -24,9 +24,14 @@ def create_app(test_config=None):
 
 	from . import db # initialize tutorial db
 	db.init_app(app)
-
+	
 	from .alchemy import alchemyDB # initialze sqlalchemy db
 	alchemyDB.init_app(app)
+
+	import alchemy.models # may be redundent? may be a blunder?
+	'when you define models in other modules, import them before calling'
+	with app.app_context():
+		alchemyDB.create_all()
 
 	from . import auth
 	app.register_blueprint(auth.bp)
