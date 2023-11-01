@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}user list {% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    {% for user in users %}
+        <li>name: <b>{{ user[0].username }}</b></li> <!-- huh, still need to access with index[0]-
+            before .username attribute can be reached
+        I guess since orm select result returns a tuple? -->
+        email: <i>{{ user[0].email }}</i>
+        <p></p>
+    {% endfor %}
+{% endblock %}

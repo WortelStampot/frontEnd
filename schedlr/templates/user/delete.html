@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}delete user {% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<div>
+    <h2> username: {{ user['username'] }}</h2>
+</div>
+<form method="post">
+    <button name="delete" value="delete">delete user</button>
+</form>
+{% endblock %}
