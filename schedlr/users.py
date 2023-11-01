@@ -6,7 +6,7 @@ blueprint = Blueprint('users', __name__)
 @blueprint.route('/users') #NOTE: seperate 'view' module? use Blueprint?
 def user_list():
     users = alchemyDB.session.execute(
-        alchemyDB.select(User).order_by(User.username)
+        alchemyDB.select(User).order_by(User.id)
     )
     return render_template('user/list.html', users=users)
 
@@ -19,7 +19,7 @@ def user_create():
         )
         alchemyDB.session.add(user)
         alchemyDB.session.commit()
-        return redirect(url_for('user_detail', id=user.id))
+        return redirect(url_for('users.user_detail', id=user.id))
     
     return render_template('user/create.html')
 
@@ -35,6 +35,6 @@ def user_delete(id):
     if request.method == 'POST':
         alchemyDB.session.delete(user)
         alchemyDB.session.commit()
-        return redirect(url_for('user_list'))
+        return redirect(url_for('users.user_list'))
     
     return render_template('user/delete.html', user=user)
