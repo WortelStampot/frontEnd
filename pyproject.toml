@@ -1,0 +1,11 @@
+[project]
+name = 'schedlr'
+version = '0.1'
+description = "the basic blog app built from the Flask tutorial."
+dependencies = [
+    'flask',
+]
+
+[build-system]
+requires = ['flit_core<4']
+build-backend = 'flit_core.buildapi'
