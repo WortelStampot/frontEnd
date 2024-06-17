@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}Enter Role{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <form method="post">
+        <label for="name">name:</label>
+        <input name="name" id="name" required>
+        <label for="callTime">call time:</label>
+        <input name="callTime" id="callTime" required>
+        <label for="qualifiedStaff">qualified staff:</label>
+        <input name="qualifiedStaff" id="qualifiedStaff" value="optional">
+        <label for="perferredStaff">prefered staff: </label>
+        <input name="perferredStaff" id="perferredStaff" value="optional">
+        <input type="submit" value="enter">
+    </form>
+{% endblock %}
+
+id: Mapped[int] = mapped_column(Integer, primary_key=True)
+name: Mapped[str] = mapped_column(String, nullable=False)
+callTime: Mapped[str] = mapped_column(String, nullable=False)
+qualifiedStaff: Mapped[str] = mapped_column(String, nullable=True) # Ids from staff table?
+perferredStaff: Mapped[str] = mapped_column(String, nullable=True) # reference to Staff table?

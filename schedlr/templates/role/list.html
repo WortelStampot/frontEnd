@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}role list {% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    {% for role in roles %}
+        <li>name: {{ role[0].name }}</li>
+        callTime: {{ role[0].callTime }}
+        <div> <!-- spacing -->
+        qualifiedStaff: {{ role[0].qualifiedStaff }}
+        </div>
+        <div>
+        perferredStaff: {{ role[0].perferredStaff }}
+        </div>
+        <p></p> <!--new line-->
+    {% endfor %}
+{% endblock %}

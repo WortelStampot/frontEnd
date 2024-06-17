@@ -15,13 +15,18 @@ class User(alchemyDB.Model):
     username: Mapped[str] = mapped_column(String, unique=True, nullable=False)
     email: Mapped[str] = mapped_column(String)
 
+class Staff(alchemyDB.Model):
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    name: Mapped[str]
+    availability: Mapped[str] # how to store this? dict value?
+    # availability table with columns: staff Id, Monday, Tuesday, Wednesday, Thursday... ?
+
+    rolePreference: Mapped[str] # list of Role Id's from Role table?
+    # how do the Role Id's get referenced?
+
 class Role(alchemyDB.Model):
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
-    name: Mapped[str] = mapped_column(String, unique=True, nullable=False)
-    day: Mapped[str] = mapped_column(String, nullable=False)
-    # callTime: Mapped[object] = do we store a datetime object directly?
-
-
-# Question about this User class,
-    # in the context of the scheduler, there's a Staff class with several methods,
-    # would we add methods to this 'Users model'?
+    name: Mapped[str] = mapped_column(String, nullable=False)
+    callTime: Mapped[str] = mapped_column(String, nullable=False)
+    qualifiedStaff: Mapped[str] = mapped_column(String, nullable=True) # Ids from staff table?
+    perferredStaff: Mapped[str] = mapped_column(String, nullable=True) # reference to Staff table?

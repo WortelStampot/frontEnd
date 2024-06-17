@@ -44,6 +44,9 @@ def create_app(test_config=None):
 
 	from . import table
 	app.register_blueprint(table.blueprint)
+
+	from . import role
+	app.register_blueprint(role.blueprint)
 	
 	return app
 
